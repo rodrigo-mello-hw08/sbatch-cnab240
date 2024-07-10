@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: poc
+  batch:
+    job:
+      enabled: true
+    jdbc:
+      initialize-schema: always
+app:
+  mysql:
+    db:
+      jdbc-url: jdbc:mysql://localhost:3307/test
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver

@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+    database:
+      container_name: mysqlpocdb
+      image: mysql:5.7
+      environment:
+        - MYSQL_DATABASE=test
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_ROOT=root
+      command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+      ports:
+          - '3307:3306'
+      volumes:
+        - "poc-database-volume:/var/lib/mysql"
+      networks:
+        - poc-bridge
+      healthcheck:
+        test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+        timeout: 20s
+        retries: 10
+
+volumes:
+  poc-database-volume:
+
+networks:
+  poc-bridge:
+    driver: bridge
